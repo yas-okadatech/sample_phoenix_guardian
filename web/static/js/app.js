@@ -26,18 +26,13 @@ require('bootstrap');
 import 'babel-core/polyfill';
 import React from 'react';
 import { render } from 'react-dom';
-import { Adrenaline } from './adrenaline';
-
 import Root from './containers/Root';
-import SampleAdaptor from './adaptor';
-import schema from './schema';
+import configureStore from './store/configureStore';
 
-const adaptor = new SampleAdaptor(schema);
+const store = configureStore();
 
 render(
-  <Adrenaline adaptor={adaptor} >
-    {() => <Root />}
-  </Adrenaline>,
+  <Root store={store} />,
   document.getElementById('app')
 );
 

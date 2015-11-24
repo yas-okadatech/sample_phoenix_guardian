@@ -21,20 +21,11 @@ defmodule SamplePhoenixReactApp.Router do
     delete "/logout", SessionController, :delete, as: :logout
 
     resources "/users", UserController
-    resources "/feeds", FeedController
-  end
-
-  scope "/graphql", SamplePhoenixReactApp.Graphql do
-    pipe_through [:api]
-
-    get "/", GraphqlController, :query
-    post "/", GraphqlController, :query
   end
 
   scope "/", SamplePhoenixReactApp do
     pipe_through :browser # Use the default browser stack
 
-    get "/static/*paths", StaticController, :static
     get "/*paths", PageController, :index
   end
 

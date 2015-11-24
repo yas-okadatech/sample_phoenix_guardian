@@ -1,4 +1,5 @@
 import merge from 'lodash/object/merge';
+import { combineReducers } from 'redux';
 import { routerStateReducer as router } from 'redux-router';
 import { handleActions } from 'redux-actions'
 
@@ -39,11 +40,11 @@ let feeds = handleActions({
 },  []);
 
 
-const rootReducer = {
+const rootReducer = combineReducers({
   auth,
   feeds,
   errorMessage,
   router
-};
+});
 
 export default rootReducer;

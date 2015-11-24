@@ -24,21 +24,6 @@ export default class NavBar extends Component {
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
               <li><Link to="/">home</Link></li>
-              <li><Link to="/feed_add">Feed add</Link></li>
-              <li><Link to="/feed_list">Feed List</Link></li>
-              <li><Link to="/feed_list_graphql">Feed List (GraphQL)</Link></li>
-              <li><a href="/page1">page1 (server)</a></li>
-            </ul>
-
-            <ul className="nav navbar-nav navbar-right">
-              <li className="dropdown">
-                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                   aria-expanded="false">Help <span className="caret"></span></a>
-                <ul className="dropdown-menu">
-                  <li><a href="/static/help">Help</a></li>
-                  <li><a href="/static/about">About</a></li>
-                </ul>
-              </li>
             </ul>
 
             {this.props.loggedIn ? (
@@ -61,7 +46,6 @@ export default class NavBar extends Component {
   }
 
   _onChange() {
-    this.state = {loggedIn: AuthStore.isLoggedIn()};
     $(location).attr('href', "/");
   }
 };
