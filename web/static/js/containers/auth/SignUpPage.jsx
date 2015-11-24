@@ -30,7 +30,7 @@ class SignUpPage extends Component {
 
   render() {
     return (
-      <SignUp onClickSignUp={::this.handleClickSignUp}/>
+      <SignUp onClickSignUp={this.handleClickSignUp.bind(this)}/>
     );
   }
 }
