@@ -1,4 +1,5 @@
 export MIX_ENV=prod
+export NODE_ENV=production
 
 # Initial setup
 npm install
