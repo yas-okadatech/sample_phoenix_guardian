@@ -16,7 +16,7 @@ class SignInPage extends Component {
 
   render() {
     return (
-      <SignIn onSignInClick={::this.handleSignInClick}/>
+      <SignIn onSignInClick={this.handleSignInClick.bind(this)}/>
     );
   }
 }

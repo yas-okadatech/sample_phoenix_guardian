@@ -9,7 +9,7 @@ export default class SignIn extends Component {
     return (
       <div>
         <div className="col-xs-2"></div>
-        <form className="col-xs-4" onSubmit={::this.handleLoginClick}>
+        <form className="col-xs-4" onSubmit={this.handleLoginClick.bind(this)}>
           <div className="form-group">
             <label>Email</label>
             <input type="text" placeholder="Your email" className="form-control" ref="email"/>
