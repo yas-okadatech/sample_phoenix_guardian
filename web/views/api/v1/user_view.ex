@@ -15,6 +15,7 @@ defmodule SamplePhoenixReactApp.Api.V1.UserView do
 
   def render("user.json", %{user: user_auth}) do
     %{id: user_auth.id,
-      name: user_auth.name}
+      name: user_auth.name,
+      email: user_auth.email}
   end
 end

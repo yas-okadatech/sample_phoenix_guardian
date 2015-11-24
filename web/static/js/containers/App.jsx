@@ -1,10 +1,12 @@
 import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { pushState } from 'redux-router';
-import { resetErrorMessage } from '../actions';
+import * as Actions from '../actions';
 
 import SideMenu from '../components/SideMenu.jsx'
 import NaviBar from '../components/NaviBar.jsx'
+import MessageModal from '../components/MessageModal'
 
 class App extends Component {
   constructor(props) {
@@ -44,11 +46,14 @@ class App extends Component {
 
   handleDismissClick(e) {
     this.props.resetErrorMessage();
-    e.preventDefault();
   }
 
   handleChange(nextValue) {
     this.props.pushState(null, `/${nextValue}`);
+  }
+
+  handleModalPrimaryButton() {
+    this.props.actions.hideModal();
   }
 
   renderErrorMessage() {
@@ -62,10 +67,21 @@ class App extends Component {
         <b>{errorMessage}</b>
         {' '}
         (<a href="#"
-            onClick={::this.handleDismissClick}>
+            onClick={this.handleDismissClick.bind(this)}>
         Dismiss
       </a>)
       </p>
+    );
+  }
+
+  renderModal() {
+    const { messageModal } = this.props;
+
+    return (
+      <div>
+        <MessageModal modal={messageModal} onPrimaryButton={this.handleModalPrimaryButton.bind(this)}/>
+      </div>
+
     );
   }
 
@@ -73,6 +89,7 @@ class App extends Component {
     const { children, inputValue } = this.props;
     return (
       <div id="wrapper">
+        {this.renderModal()}
         <SideMenu ref="sideMenu"/>
 
         <div id="page-content-wrapper">
@@ -100,9 +117,8 @@ App.propTypes = {
   // Injected by React Redux
   loggedIn: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string,
-  resetErrorMessage: PropTypes.func.isRequired,
+  messageModal: PropTypes.object.isRequired,
   pushState: PropTypes.func.isRequired,
-  inputValue: PropTypes.string.isRequired,
   // Injected by React Router
   children: PropTypes.node
 };
@@ -110,12 +126,16 @@ App.propTypes = {
 function mapStateToProps(state) {
   return {
     loggedIn: !(state.auth == ""),
-    errorMessage: state.errorMessage,
-    inputValue: state.router.location.pathname.substring(1)
+    messageModal: state.messageModal,
+    errorMessage: state.errorMessage
   };
 }
 
-export default connect(mapStateToProps, {
-  resetErrorMessage,
-  pushState
-})(App);
+function mapDispatchToProps(dispatch) {
+  return {
+    pushState,
+    actions: bindActionCreators(Actions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

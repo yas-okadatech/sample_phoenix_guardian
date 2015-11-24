@@ -1,11 +1,14 @@
 defmodule SamplePhoenixReactApp.Api.V1.UserController do
   use SamplePhoenixReactApp.Web, :controller
 
+  require Logger
+
   alias SamplePhoenixReactApp.UserAuth
   alias SamplePhoenixReactApp.UserQuery
 
   plug Guardian.Plug.EnsureAuthenticated,
-      %{ on_failure: { SamplePhoenixReactApp.Api.V1.SessionController, :unauthenticated_api } } when action in [:index]
+      %{ on_failure: { SamplePhoenixReactApp.Api.V1.SessionController, :unauthenticated_api } }
+      when action in [:index, :update]
 
   plug :scrub_params, "user" when action in [:create, :update]
 
@@ -37,6 +40,14 @@ defmodule SamplePhoenixReactApp.Api.V1.UserController do
   end
 
   def update(conn, %{"id" => id, "user" => user_auth_params}) do
+    %{"password" => password} = user_auth_params
+
+    user_auth_params =
+    case user_auth_params do
+      %{"password" => nil} -> %{"password" => "password"}
+      _ -> user_auth_params
+    end
+
     user_auth = Repo.get!(UserAuth, id)
     changeset = UserAuth.update_changeset(user_auth, user_auth_params)
 

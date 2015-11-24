@@ -10,6 +10,8 @@ import SignUpPage from "./containers/auth/SignUpPage.jsx";
 import SignInPage from "./containers/auth/SignInPage.jsx";
 import SignOutPage from "./containers/auth/SignOutPage.jsx";
 
+import UserListPage from "./containers/user/UserListPage";
+
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={IndexPage}/>
@@ -17,6 +19,8 @@ export default (
     <Route path="sign_up" component={SignUpPage}/>
     <Route path="sign_in" component={SignInPage}/>
     <Route path="sign_out" component={SignOutPage}/>
+
+    <Route path="user_list" component={UserListPage}/>
 
     <Route path="*" component={DefaultPage}/>
 

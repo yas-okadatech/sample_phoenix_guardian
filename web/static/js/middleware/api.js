@@ -13,7 +13,8 @@ export const api = store => next => action => {
       method: method,
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'authorization': store.getState().auth
       },
       body: method == "get" ? null : JSON.stringify(params)
     })

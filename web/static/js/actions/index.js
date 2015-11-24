@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions'
 
 import { empty } from "./empty"
-import { METHOD_GET, METHOD_POST, createApiMeta } from "./api";
+import { METHOD_GET, METHOD_POST, METHOD_PUT, createApiMeta } from "./api";
 import * as Error from './error'
 
 export const RESET_ERROR_MESSAGE = 'RESET_ERROR_MESSAGE';
@@ -9,7 +9,15 @@ export const RESET_ERROR_MESSAGE = 'RESET_ERROR_MESSAGE';
 export let resetErrorMessage = createAction(RESET_ERROR_MESSAGE);
 export let createErrorMeta = Error.createErrorMeta;
 
+// modal dialog
+export const SHOW_MODAL = "SHOW_MODAL";
+export const HIDE_MODAL = "HIDE_MODAL";
 
+export let showModal = createAction(SHOW_MODAL, (title, message) => ({title: title, message: message}));
+export let hideModal = createAction(HIDE_MODAL);
+
+
+// auth
 export const SIGN_UP = "SIGN_UP";
 export const LOG_IN = 'LOG_IN';
 export const LOG_OUT = 'LOG_OUT';
@@ -26,13 +34,15 @@ export const logIn = createAction(LOG_IN,
 export const logOut = createAction(LOG_OUT);
 
 
-export const FEED_ADD = "FEED_ADD";
-export const FEED_GET = "FEED_GET";
+// user
+export const USERS_GET = "USERS_GET";
 
-export const feedAdd = createAction(FEED_ADD,
+export const usersGet = createAction(USERS_GET,
   undefined,
-  url => createApiMeta("/api/v1/feeds", { feed_url: url }, METHOD_POST));
+  () => createApiMeta("/api/v1/users", null, METHOD_GET));
 
-export const feedGet = createAction(FEED_GET,
+export const USER_PASSWORD_RESET = "USER_PASSWORD_RESET";
+
+export const userPasswordReset = createAction(USER_PASSWORD_RESET,
   undefined,
-  () => createApiMeta("/api/v1/feeds", null, METHOD_GET));
+  (user) => createApiMeta("/api/v1/users/" + user.id, {user: user}, METHOD_PUT));

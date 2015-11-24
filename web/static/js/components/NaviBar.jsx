@@ -24,6 +24,7 @@ export default class NavBar extends Component {
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
               <li><Link to="/">home</Link></li>
+              <li><Link to="/user_list">User List</Link></li>
             </ul>
 
             {this.props.loggedIn ? (
