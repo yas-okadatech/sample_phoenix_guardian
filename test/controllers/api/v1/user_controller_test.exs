@@ -1,19 +1,48 @@
 defmodule SamplePhoenixReactApp.Api.V1.UserControllerTest do
   use SamplePhoenixReactApp.ConnCase
 
+  #alias Guardian.Claims
+  #alias Guardian.Keys
+  #alias Guardian.Plug.VerifyHeader
+  #alias Plug.Conn
+
+  alias Guardian.Keys
+  alias Guardian.Plug.EnsureAuthenticated
+
   alias SamplePhoenixReactApp.UserAuth
   @valid_attrs %{email: "some content", password: "some content", name: "some content"}
   @invalid_attrs %{}
 
+  defmodule TestHandler do
+    def unauthenticated(conn, _) do
+      conn |> Plug.Conn.assign(:guardian_spec, :unauthenticated)
+    end
+  end
+
+  @expected_failure { TestHandler, :unauthenticated }
+  @failure %{ on_failure: @expected_failure }
+
   setup do
-    conn = conn() |> put_req_header("accept", "application/json")
+    conn = conn()
+    |> put_req_header("accept", "application/json")
+
     {:ok, conn: conn}
   end
 
-#  test "lists all entries on index", %{conn: conn} do
-#    conn = get conn, user_path(conn, :index)
-#    assert json_response(conn, 200) == []
-#  end
+  test "index 401", %{conn: conn} do
+    conn = get conn, user_path(conn, :index)
+    assert json_response(conn, 401) ==  %{"error" => "Login required"}
+  end
+
+  test "lists 200 all list", %{conn: conn} do
+    claims = %{ "aud" => "token", "sub" => "user1" }
+    conn = conn(:get, "/foo") |> Plug.Conn.assign(Keys.claims_key, { :ok, claims })
+    opts = EnsureAuthenticated.init(on_failure: @expected_failure, aud: "token")
+    conn = EnsureAuthenticated.call(conn, opts)
+
+    conn = get conn, user_path(conn, :index)
+    assert json_response(conn, 200) == []
+  end
 
 #  test "shows chosen resource", %{conn: conn} do
 #    user_auth = Repo.insert! %UserAuth{}

@@ -1,4 +1,5 @@
 %{"apex": {:hex, :apex, "0.3.4"},
+  "base64url": {:hex, :base64url, "0.0.1"},
   "bbmustache": {:hex, :bbmustache, "1.0.3"},
   "combine": {:hex, :combine, "0.5.3"},
   "comeonin": {:hex, :comeonin, "1.2.2"},
@@ -19,6 +20,7 @@
   "httpoison": {:hex, :httpoison, "0.7.4"},
   "idna": {:hex, :idna, "1.0.2"},
   "joken": {:hex, :joken, "0.15.0"},
+  "jose": {:hex, :jose, "1.4.1"},
   "mariaex": {:hex, :mariaex, "0.4.3"},
   "neotoma": {:hex, :neotoma, "1.7.3"},
   "phoenix": {:hex, :phoenix, "1.0.3"},

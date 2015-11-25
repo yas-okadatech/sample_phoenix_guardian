@@ -44,6 +44,7 @@ defmodule SamplePhoenixReactApp.Mixfile do
      {:timex_ecto, "~> 0.5.0"},
      {:graphql, "~> 0.0.2"},
      {:apex, "~>0.3.2"},
+     {:jose, "~> 1.4", only: :test},
      {:exrm, "~> 0.19.9"}]
   end
 

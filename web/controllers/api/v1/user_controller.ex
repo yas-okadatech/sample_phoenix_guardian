@@ -13,6 +13,7 @@ defmodule SamplePhoenixReactApp.Api.V1.UserController do
   plug :scrub_params, "user" when action in [:create, :update]
 
   def index(conn, _params) do
+    Logger.debug inspect conn
     user_auths = Repo.all(UserAuth)
     render(conn, "index.json", user_auths: user_auths)
   end
