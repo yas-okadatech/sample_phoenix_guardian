@@ -1,10 +1,13 @@
+//jest.autoMockOff()
 jest.dontMock('../DefaultPage.jsx');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 
-import DefaultPage from '../DefaultPage.jsx'
+// TODO import not work...
+//import DefaultPage from '../DefaultPage.jsx'
+let DefaultPage = require('../DefaultPage.jsx')
 
 describe('default page', () => {
 
