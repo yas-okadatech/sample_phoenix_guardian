@@ -58,16 +58,3 @@ if [ ! -e $HOME/.mix/rebar ]; then
   yes Y | LC_ALL=en_GB.UTF-8 mix local.hex
   yes Y | LC_ALL=en_GB.UTF-8 mix local.rebar
 fi
-
-# Fetch and compile dependencies and application code (and include testing tools)
-export MIX_ENV="test"
-cd $HOME/$CIRCLE_PROJECT_REPONAME
-
-# Initial setup
-npm install
-mix clean
-mix deps.get
-mix compile
-
-# Compile assets
-npm run gulpBuild
