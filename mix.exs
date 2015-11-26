@@ -18,8 +18,8 @@ defmodule SamplePhoenixReactApp.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {SamplePhoenixReactApp, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :httpoison,
-                    :phoenix_ecto, :mariaex, :timex, :tzdata, :graphql, :apex]]
+     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :httpoison, :phoenix_ecto, :mariaex, :timex, :tzdata,
+                    :apex, :guardian, :comeonin, :uuid]]
   end
 
   # Specifies which paths to compile per environment.
@@ -38,11 +38,11 @@ defmodule SamplePhoenixReactApp.Mixfile do
      {:cowboy, "~> 1.0"},
      {:guardian, "~> 0.6.2"},
      {:comeonin, "~> 1.2.2"},
+     {:uuid, "~> 1.1" },
      {:httpoison, "~> 0.7.4"},
      {:feeder_ex, ">= 0.0.0"},
      {:timex, "~> 0.19.5"},
      {:timex_ecto, "~> 0.5.0"},
-     {:graphql, "~> 0.0.2"},
      {:apex, "~>0.3.2"},
      {:jose, "~> 1.4", only: :test},
      {:exrm, "~> 0.19.9"}]

@@ -37,4 +37,4 @@
   "timex": {:hex, :timex, "0.19.5"},
   "timex_ecto": {:hex, :timex_ecto, "0.5.0"},
   "tzdata": {:hex, :tzdata, "0.5.4"},
-  "uuid": {:hex, :uuid, "1.0.1"}}
+  "uuid": {:hex, :uuid, "1.1.1"}}
