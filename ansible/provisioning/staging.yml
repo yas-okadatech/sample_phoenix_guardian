@@ -1,0 +1,9 @@
+---
+- name: Staging Playbook
+  hosts: server
+  sudo: yes
+  roles:
+    - nginx
+    - staging
+  tags:
+    - staging

@@ -1,4 +1,4 @@
 # vi: set ft=yaml:
 
-[local]
+[server]
 sample

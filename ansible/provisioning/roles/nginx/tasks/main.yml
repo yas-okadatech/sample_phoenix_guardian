@@ -1,5 +1,4 @@
 ---
-# file: provisioning/roles/nginx/tasks/main.yml
 - name: Install libselinux-python
   yum: name=libselinux-python state=present
 
@@ -8,21 +7,6 @@
 
 - name: install nginx
   yum: name=nginx state=present
-
-- name: copy .htpasswd
-  template: src=roles/nginx/templates/.htpasswd dest=/etc/nginx/.htpasswd
-
-#- name: put nginx.conf
-#  template: src=roles/nginx/templates/nginx.conf.j2 dest=/etc/nginx/nginx.conf
-#  notify: restart nginx
-
-- name: put conf.d/default.conf
-  template: src=roles/nginx/templates/default.conf.j2 dest=/etc/nginx/conf.d/default.conf
-  notify: restart nginx
-
-#- name: put conf.d/virtual.conf
-#  template: src=roles/nginx/templates/virtual.conf.j2 dest=/etc/nginx/conf.d/virtual.conf
-#  notify: restart nginx
 
 - name: start nginx
   service: name=nginx state=started enabled=yes

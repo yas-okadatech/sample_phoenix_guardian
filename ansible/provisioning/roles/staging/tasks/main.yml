@@ -1,0 +1,15 @@
+- name: copy .htpasswd
+  template: src=roles/staging/templates/.htpasswd dest=/etc/nginx/.htpasswd
+
+#- name: put nginx.conf
+#  template: src=roles/staging/templates/nginx.conf.j2 dest=/etc/nginx/nginx.conf
+#  notify: restart nginx
+
+- name: put conf.d/default.conf
+  template: src=roles/staging/templates/default.conf.j2 dest=/etc/nginx/conf.d/default.conf
+  notify: restart nginx
+
+#- name: put conf.d/virtual.conf
+#  template: src=roles/nginx/templates/virtual.conf.j2 dest=/etc/nginx/conf.d/virtual.conf
+#  notify: restart nginx
+
