@@ -27,9 +27,11 @@ erl_crash.dump
 rel
 npm-debug.log
 
+# vagrant
+.vagrant
+
 # IntelliJ
 .idea
 *.iml
 .sass-cache
 .vagrant
-
