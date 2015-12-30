@@ -36,6 +36,7 @@ config :joken, config_module: Guardian.JWT
 
 config :guardian, Guardian,
   issuer: "SamplePhoenixReactApp",
+  #ttl: { 1, :minutes },
   ttl: { 30, :days },
   verify_issuer: true,
   secret_key: "t5-s0EO:Km/k@>VH9)buk+<IM&A3qkM1NN6P^xjn`%mFq6i5~-3[1TRI180}6s,",

@@ -28,12 +28,12 @@ export default class NavBar extends Component {
             </ul>
 
             {this.props.loggedIn ? (
-              <ul className="nav navbar-nav navbar-right">
+              <ul className="nav navbar-nav">
                 <li><Link to="/sign_out">Sign out</Link></li>
               </ul>
             ) : (
               <div>
-                <ul className="nav navbar-nav navbar-right">
+                <ul className="nav navbar-nav">
                   <li><Link to="/sign_in">Log in</Link></li>
                   <li><Link to="/sign_up">Sign up</Link></li>
                 </ul>
