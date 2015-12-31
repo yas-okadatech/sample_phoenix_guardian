@@ -8,6 +8,7 @@ defmodule SamplePhoenixReactApp.UserAuth do
     field :email, :string
     field :encrypted_password, :string
     field :password, :string, virtual: true
+    field :type, :string
 
     timestamps
   end

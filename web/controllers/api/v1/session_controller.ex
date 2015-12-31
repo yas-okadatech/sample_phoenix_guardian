@@ -22,7 +22,7 @@ defmodule SamplePhoenixReactApp.Api.V1.SessionController do
         #conn
         #|> Guardian.Plug.sign_in(user, :token, perms: %{ default: Guardian.Permissions.max })
         #|> json %{token: Guardian.Plug.current_token(conn)}
-        { :ok, jwt, full_claims } = Guardian.encode_and_sign(user, :token)
+        { :ok, jwt, full_claims } = Guardian.encode_and_sign(user, :token, perms: %{ default: Guardian.Permissions.max, admin: Guardian.Permissions.max})
         json conn, %{token: jwt}
       else
         conn

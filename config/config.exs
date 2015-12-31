@@ -40,4 +40,8 @@ config :guardian, Guardian,
   ttl: { 30, :days },
   verify_issuer: true,
   secret_key: "t5-s0EO:Km/k@>VH9)buk+<IM&A3qkM1NN6P^xjn`%mFq6i5~-3[1TRI180}6s,",
-  serializer: SamplePhoenixReactApp.GuardianSerializer
+  serializer: SamplePhoenixReactApp.GuardianSerializer,
+  permissions: %{
+          default: [:create_user, :update_me],
+          admin: [:read_userlist]
+        }

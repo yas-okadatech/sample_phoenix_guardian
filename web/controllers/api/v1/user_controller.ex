@@ -9,6 +9,9 @@ defmodule SamplePhoenixReactApp.Api.V1.UserController do
   plug Guardian.Plug.EnsureAuthenticated,
       %{ on_failure: { SamplePhoenixReactApp.Api.V1.SessionController, :unauthenticated_api } }
       when action in [:index, :update]
+  plug Guardian.Plug.EnsurePermissions,
+      %{ on_failure: { SamplePhoenixReactApp.Api.V1.SessionController, :forbidden_api }, admin: [:read_userlist] }
+      when action in [:index]
 
   plug :scrub_params, "user" when action in [:create, :update]
 
