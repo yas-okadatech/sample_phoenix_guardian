@@ -32,8 +32,6 @@ config :phoenix, :generators,
   migration: true,
   binary_id: false
 
-config :joken, config_module: Guardian.JWT
-
 config :guardian, Guardian,
   issuer: "SamplePhoenixReactApp",
   #ttl: { 1, :minutes },

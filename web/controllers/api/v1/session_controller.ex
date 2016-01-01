@@ -22,7 +22,8 @@ defmodule SamplePhoenixReactApp.Api.V1.SessionController do
         #conn
         #|> Guardian.Plug.sign_in(user, :token, perms: %{ default: Guardian.Permissions.max })
         #|> json %{token: Guardian.Plug.current_token(conn)}
-        { :ok, jwt, full_claims } = Guardian.encode_and_sign(user, :token, perms: %{ default: Guardian.Permissions.max, admin: Guardian.Permissions.max})
+        { :ok, jwt, full_claims } = Guardian.encode_and_sign(user, :token,
+                            perms: %{ default: Guardian.Permissions.max, admin: [:read_userlist]})
         json conn, %{token: jwt}
       else
         conn
@@ -57,6 +58,7 @@ defmodule SamplePhoenixReactApp.Api.V1.SessionController do
   end
 
   def forbidden_api(conn, _) do
+
     conn
     |> put_status(403)
     |> json(%{ error: :forbidden })

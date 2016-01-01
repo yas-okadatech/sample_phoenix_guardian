@@ -36,7 +36,7 @@ defmodule SamplePhoenixReactApp.Mixfile do
      {:phoenix_html, "~> 2.1"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:cowboy, "~> 1.0"},
-     {:guardian, "~> 0.6.2"},
+     {:guardian, "~> 0.9.0"},
      {:comeonin, "~> 1.2.2"},
      {:uuid, "~> 1.1" },
      {:httpoison, "~> 0.7.4"},
