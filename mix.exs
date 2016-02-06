@@ -30,11 +30,11 @@ defmodule SamplePhoenixReactApp.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.0.3"},
-     {:phoenix_ecto, "~> 1.1"},
-     {:mariaex, ">= 0.0.0"},
-     {:phoenix_html, "~> 2.1"},
+    [{:phoenix, "~> 1.1"},
+     {:phoenix_ecto, "~> 2.0"},
+     {:phoenix_html, "~> 2.3"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
+     {:mariaex, ">= 0.0.0"},
      {:cowboy, "~> 1.0"},
      {:guardian, "~> 0.9.0"},
      {:comeonin, "~> 1.2.2"},
@@ -44,7 +44,6 @@ defmodule SamplePhoenixReactApp.Mixfile do
      {:timex, "~> 0.19.5"},
      {:timex_ecto, "~> 0.5.0"},
      {:apex, "~>0.3.2"},
-     {:jose, "~> 1.4", only: :test},
      {:exrm, "~> 0.19.9"}]
   end
 

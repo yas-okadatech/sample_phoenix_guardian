@@ -30,7 +30,7 @@ defmodule SamplePhoenixReactApp.Api.V1.UserController do
         { :ok, jwt, full_claims } = Guardian.encode_and_sign(user, :token)
         conn
         |> put_status(:created)
-        |> json %{token: jwt}
+        |> json(%{token: jwt})
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)

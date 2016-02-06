@@ -14,7 +14,7 @@
   <body>
     <div id="app" >
 
-      <%= @inner %>
+      <%= render @view_module, @view_template, assigns %>
 
     </div>
     <div>Ver 0.0.2</div>
