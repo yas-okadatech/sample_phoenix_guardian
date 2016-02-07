@@ -13,9 +13,6 @@ defmodule SamplePhoenixReactApp.UserAuth do
     timestamps
   end
 
-  before_insert :maybe_update_password
-  before_update :maybe_update_password
-
   def from_email(nil), do: { :error, :not_found }
   def from_email(email) do
     Repo.one(UserAuth, email: email)
@@ -24,11 +21,13 @@ defmodule SamplePhoenixReactApp.UserAuth do
   def create_changeset(model, params \\ :empty) do
     model
     |> cast(params, ~w(name email password), ~w())
+    |> maybe_update_password
   end
 
   def update_changeset(model, params \\ :empty) do
     model
     |> cast(params, ~w(), ~w(name email password))
+    |> maybe_update_password
   end
 
   def login_changeset(model), do: model |> cast(%{}, ~w(), ~w(email password))
