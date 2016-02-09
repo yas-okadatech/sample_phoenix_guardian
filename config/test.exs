@@ -14,6 +14,6 @@ config :sample_phoenix_react, SamplePhoenixReactApp.Repo,
   adapter: Ecto.Adapters.MySQL,
   username: "root",
   password: "",
-  database: "sample_phoenix_react_test",
+  database: "sample_phoenix_guardian_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
