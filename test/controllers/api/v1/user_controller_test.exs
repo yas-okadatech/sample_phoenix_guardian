@@ -19,9 +19,6 @@ defmodule SamplePhoenixReactApp.Api.V1.UserControllerTest do
     end
   end
 
-  @expected_failure { TestHandler, :unauthenticated }
-  @failure %{ on_failure: @expected_failure }
-
   setup do
     conn = conn()
     |> put_req_header("accept", "application/json")
@@ -38,7 +35,7 @@ defmodule SamplePhoenixReactApp.Api.V1.UserControllerTest do
     claims = %{ "aud" => "token", "sub" => "user1" }
     #conn = conn(:get, "/foo") |> Plug.Conn.assign(Keys.claims_key, { :ok, claims })
     conn = conn |> Plug.Conn.assign(Keys.claims_key, { :ok, claims })
-    opts = EnsureAuthenticated.init(on_failure: @expected_failure, aud: "token")
+    opts = EnsureAuthenticated.init(handler: TestHandler, aud: "token")
     conn = EnsureAuthenticated.call(conn, opts)
 
     conn = get conn, user_path(conn, :index)
