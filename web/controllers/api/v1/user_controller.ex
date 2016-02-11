@@ -7,16 +7,15 @@ defmodule SamplePhoenixReactApp.Api.V1.UserController do
   alias SamplePhoenixReactApp.UserQuery
 
   plug Guardian.Plug.EnsureAuthenticated,
-      %{ on_failure: { SamplePhoenixReactApp.Api.V1.SessionController, :unauthenticated_api } }
+      %{ handler: SamplePhoenixReactApp.Api.V1.SessionController }
       when action in [:index, :update]
-  plug Guardian.Plug.EnsurePermissions,
-      %{ on_failure: { SamplePhoenixReactApp.Api.V1.SessionController, :forbidden_api }, admin: [:read_userlist] }
-      when action in [:index]
+  #plug Guardian.Plug.EnsurePermissions,
+  #    %{ on_failure: { SamplePhoenixReactApp.Api.V1.SessionController, :forbidden_api }, admin: [:read_userlist] }
+  #    when action in [:index]
 
   plug :scrub_params, "user" when action in [:create, :update]
 
   def index(conn, _params) do
-    Logger.debug inspect conn
     user_auths = Repo.all(UserAuth)
     render(conn, "index.json", user_auths: user_auths)
   end

@@ -36,7 +36,8 @@ defmodule SamplePhoenixReactApp.Api.V1.UserControllerTest do
 
   test "lists 200 all list", %{conn: conn} do
     claims = %{ "aud" => "token", "sub" => "user1" }
-    conn = conn(:get, "/foo") |> Plug.Conn.assign(Keys.claims_key, { :ok, claims })
+    #conn = conn(:get, "/foo") |> Plug.Conn.assign(Keys.claims_key, { :ok, claims })
+    conn = conn |> Plug.Conn.assign(Keys.claims_key, { :ok, claims })
     opts = EnsureAuthenticated.init(on_failure: @expected_failure, aud: "token")
     conn = EnsureAuthenticated.call(conn, opts)
 

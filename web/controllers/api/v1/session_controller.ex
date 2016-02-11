@@ -7,7 +7,7 @@ defmodule SamplePhoenixReactApp.Api.V1.SessionController do
   alias SamplePhoenixReactApp.UserQuery
 
   plug Guardian.Plug.EnsureAuthenticated,
-    %{ on_failure: { SamplePhoenixReactApp.Api.V1.SessionController, :unauthenticated_api } } when not action in [:create]
+    %{ handler: SamplePhoenixReactApp.Api.V1.SessionController } when not action in [:create]
   #plug Guardian.Plug.EnsurePermissions, on_failure: { SessionController, :forbidden_api }, default: [:write_profile]
 
   @doc """
@@ -48,7 +48,7 @@ defmodule SamplePhoenixReactApp.Api.V1.SessionController do
 
   end
 
-  def unauthenticated_api(conn, _params) do
+  def unauthenticated(conn, _params) do
     the_conn = put_status(conn, 401)
     case Guardian.Plug.claims(conn) do
       { :error, :no_session } -> json(the_conn, %{ error: "Login required" })
