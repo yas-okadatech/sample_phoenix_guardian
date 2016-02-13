@@ -13,12 +13,6 @@ defmodule SamplePhoenixReactApp.Api.V1.UserControllerTest do
   @valid_attrs %{email: "some content", password: "some content", name: "some content"}
   @invalid_attrs %{}
 
-  defmodule TestHandler do
-    def unauthenticated(conn, _) do
-      conn |> Plug.Conn.assign(:guardian_spec, :unauthenticated)
-    end
-  end
-
   setup do
     conn = conn()
     |> put_req_header("accept", "application/json")
@@ -34,9 +28,7 @@ defmodule SamplePhoenixReactApp.Api.V1.UserControllerTest do
   test "lists 200 all list", %{conn: conn} do
     claims = %{ "aud" => "token", "sub" => "user1" }
     #conn = conn(:get, "/foo") |> Plug.Conn.assign(Keys.claims_key, { :ok, claims })
-    conn = conn |> Plug.Conn.assign(Keys.claims_key, { :ok, claims })
-    opts = EnsureAuthenticated.init(handler: TestHandler, aud: "token")
-    conn = EnsureAuthenticated.call(conn, opts)
+    conn = conn |> Guardian.Plug.set_claims({ :ok, claims })
 
     conn = get conn, user_path(conn, :index)
     assert json_response(conn, 200) == []
