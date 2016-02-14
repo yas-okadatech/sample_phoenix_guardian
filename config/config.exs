@@ -43,3 +43,17 @@ config :guardian, Guardian,
           default: [:create_user, :update_me],
           admin: [:read_userlist]
         }
+
+config :ueberauth, Ueberauth,
+  providers: [
+    #facebook: { Ueberauth.Strategy.Facebook, [] },
+    #github: { Ueberauth.Strategy.Github, [] },
+    #google: { Ueberauth.Strategy.Google, [] },
+    #slack: { Ueberauth.Strategy.Slack, [] },
+    #twitter: { Ueberauth.Strategy.Twitter, []},
+    identity: { Ueberauth.Strategy.Identity, [
+        callback_methods: ["POST"],
+        uid_field: :username,
+        nickname_field: :username,
+      ] }
+  ]
