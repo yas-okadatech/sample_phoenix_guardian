@@ -18,8 +18,26 @@ defmodule SamplePhoenixReactApp.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {SamplePhoenixReactApp, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :httpoison, :phoenix_ecto, :mariaex, :timex, :tzdata,
-                    :apex, :guardian, :comeonin, :uuid]]
+     applications: [:phoenix,
+                    :phoenix_html,
+                    :cowboy,
+                    :logger,
+                    :httpoison,
+                    :phoenix_ecto,
+                    :mariaex,
+                    :timex,
+                    :tzdata,
+                    :apex,
+                    :guardian,
+                    :ueberauth_facebook,
+                    :ueberauth_google,
+                    :ueberauth_github,
+                    :ueberauth_identity,
+                    :ueberauth_slack,
+                    :ueberauth_twitter,
+                    :oauth,
+                    :comeonin,
+                    :uuid]]
   end
 
   # Specifies which paths to compile per environment.
@@ -37,6 +55,13 @@ defmodule SamplePhoenixReactApp.Mixfile do
      {:mariaex, ">= 0.0.0"},
      {:cowboy, "~> 1.0"},
      {:guardian, "~> 0.10.0"},
+     {:ueberauth_facebook, "~> 0.2"},
+     {:ueberauth_google, "~> 0.2"},
+     {:ueberauth_github, "~> 0.2"},
+     {:ueberauth_identity, "~> 0.2"},
+     {:ueberauth_slack, "~> 0.2"},
+     {:ueberauth_twitter, "~> 0.2"},
+     {:oauth, github: "tim/erlang-oauth"},
      {:comeonin, "~> 1.2.2"},
      {:uuid, "~> 1.1" },
      {:httpoison, "~> 0.7.4"},
